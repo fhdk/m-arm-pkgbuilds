@@ -1,7 +1,7 @@
 # Maintainer: Frede Hundewadt <fh@manjaro.org>
 # Contributor: Philip Müller <philm@manjaro.org>
 
-_srcdir="m-arm-pacman-mirrors
+_pkgdir="m-arm-pacman-mirrors"
 _branch=master
 _date=$(date +%Y%m%d)
 pkgname=pacman-mirrors
@@ -31,18 +31,18 @@ sha256sums=('SKIP'
             '6b6869d9dd85cd3a3cba49013dd2fc1c5f7a0934ba1284e21d4bbd24fa2540c6')
 
 prepare() {
-  cd "${srcdir}"/pacman-mirrors
+  cd "${srcdir}"/${_pkgdir}
   # do something here
 }
 
 package() {
-  cd "${_srcdir}"/pacman-mirrors
+  cd "${srcdir}"/${_pkgdir}
   make DESTDIR="${pkgdir}" install
 
-  install -D ${_srcdir}/pacman-mirrors-install.script ${pkgdir}/usr/share/libalpm/scripts/pacman-mirrors-install
-  install -D ${_srcdir}/pacman-mirrors-upgrade.script ${pkgdir}/usr/share/libalpm/scripts/pacman-mirrors-upgrade
-  install -Dm644 ${_srcdir}/pacman-mirrors-install.hook ${pkgdir}/usr/share/libalpm/hooks/pacman-mirrors-install.hook
-  install -Dm644 ${_srcdir}/pacman-mirrors-upgrade.hook ${pkgdir}/usr/share/libalpm/hooks/pacman-mirrors-upgrade.hook
+  install -D ${srcdir}/pacman-mirrors-install.script ${pkgdir}/usr/share/libalpm/scripts/pacman-mirrors-install
+  install -D ${srcdir}/pacman-mirrors-upgrade.script ${pkgdir}/usr/share/libalpm/scripts/pacman-mirrors-upgrade
+  install -Dm644 ${srcdir}/pacman-mirrors-install.hook ${pkgdir}/usr/share/libalpm/hooks/pacman-mirrors-install.hook
+  install -Dm644 ${srcdir}/pacman-mirrors-upgrade.hook ${pkgdir}/usr/share/libalpm/hooks/pacman-mirrors-upgrade.hook
 }
 
 
